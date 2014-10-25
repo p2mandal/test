@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title>HTML5 Tags</title>
+		<style>
+			#sec1 {
+				background-color: yellow;
+			}	
+			#main {
+				background-color: blue;
+				color : white;
+				border-width: 1px;
+				border-style: inset;
+				border-radius: 3%;
+			}
+			form{
+				margin-left: 2%;
+				margin-top: 2%;
+				margin-bottom: 2%;
+			}
+		</style>
+	</head>	
+	<body>
+		<section id="sec1" contenteditable>Today is monday</section><br/>
+		<section id="main">
+			<form>
+				<label>Name</label>
+				<input type="text" required><br/>
+				<label>Age</label>
+				<input type="number" max="40" min="15" required><br/>
+				<label>Email</label>
+				<input type="email" required><br/>
+				<label>Website</label>
+				<input type="url" required><br/>
+				<label>Expected Salary</label>
+				<input type="range" max="50000" min="10000"><br/>
+				<label>Expected date of joining</label>
+				<input type="date"><br/>
+				<input type="submit" value="Submit">
+			</form>
+		</section>	
+	</body>
+</html>

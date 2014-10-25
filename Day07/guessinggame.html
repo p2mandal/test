@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			var game = {
+				target : Math.round(Math.random()*100),
+				attempts : 0,
+				message : "",
+				history : [],
+				gameOver : false,
+				play : function(guess){
+					this.attempts++;
+					this.history[this.attempts] = guess;
+					if(guess > this.target)
+						this.message = "Aim Lower";
+					else if(guess < this.target)
+						this.message = "Aim Higher";
+					else{
+						this.message = "You've got it!!!";
+						this.gameOver = true;
+					}
+				}
+			};
+			function displayHistory(){
+				var rows = "";
+				console.log(game.history);
+				for(var key in game.history){
+					var attempt = key;
+					var guess = game.history[attempt];
+					rows += "<tr>";
+					rows += "<td>" + attempt +"</td>";
+					rows += "<td>" + guess +"</td>";
+					rows += "<tr>";
+				}
+				var table = "<table border='1'>";
+				table += "<thead><tr><th>Attempt</th><th>Guess</th></thead>";
+				table += "<tbody>";
+				table += rows;
+				table += "</tbody>";
+				table += "</table>";
+				console.log(table);
+				$("#results").html(table);
+			}
+			function play(){
+				console.log(game.target);
+				game.play($("#guess").val());
+				$("#message").html(game.message);
+				$("#attempts").html("Attempts: " + game.attempts);
+				$("#guess").select();
+				if(game.gameOver)
+					displayHistory();
+			}
+			$().ready(function(){
+				$("#guessbutton").on("click",play);
+			});
+		</script>
+	</head>
+	<body>
+		<header>Guessing game</header>
+		<input type="text" placeholder="Enter your guess" id="guess"><br/>
+		<input type="button" value="Guess" id="guessbutton">
+		<h1 id="message"></h1>
+		<h2 id="attempts"></h2>
+		<section id="results">
+		</section>	
+	</body>
+</html>			

@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<script>	
+			var $ = function(){
+				var obj = {
+					ready : function(fn){
+						window.onload = fn;
+					}
+				};
+				return obj;
+			};
+			
+			$().ready(init);
+			function init(){
+				alert("Hello jQuery");
+			}
+		</script>
+	</head>	
+</html>

@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			function doSomething(){
+				$("ul").append("<li>Yawwwwwn</li>");
+				$("input:button").before("<input type='checkbox'>");
+				$("input:button").after("<input type='text'>");
+				//$("input:button").remove();
+			}
+			$().ready(function(){
+				$("input:button").on("click",doSomething);
+			});
+		</script>
+	</head>	
+	<body>
+		<ul>
+		</ul>	
+		<input type="button" value="click">
+	</body>
+</html>	

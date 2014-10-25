@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script src="game.js"></script>
+		
+		<script>
+			function displayHistory(){
+				var output = "<hr/>";
+				for(var key in gameHistory){
+					output += "Attempt(" + key + "): ";
+					output += gameHistory[key];
+					output += "<br/>";
+				}
+				document.getElementById("historysection").innerHTML = output;
+			}
+			
+			function guessButtonClicked(){
+				
+				var guessText = document.getElementById("guesstext");
+				var guess = guessText.value;
+				play(guess);
+				document.getElementById("messageh2").innerHTML = message;
+				document.getElementById("attemptsh2").innerHTML = "Attempts: " + attempts;
+				guessText.select();
+				if(gameOver)
+					displayHistory();
+			}
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			<h1>Guessing game</h1>
+		</header>
+		
+		<input type="text" id="guesstext" placeholder="Number"><br/>
+		<input type="button" value="Guess" onclick="guessButtonClicked()">
+		
+		<h2 id="messageh2"></h2>
+		<h2 id="attemptsh2"></h2>
+		
+		<section id="historysection"></section>
+	
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+	<head>	
+		<style>
+			@-webkit-keyframes spin {
+				from{
+					font-size: 4em; 
+					-webkit-transform: rotate(0deg);
+				}
+				to{
+					font-size : 1em;
+					-webkit-transform: rotate(360000deg);
+				}
+			}
+			section{
+				-webkit-animation-name:spin;
+				-webkit-animation-duration: 5s;
+				-webkit-animation-iteration-count:infinite;
+
+				border-width:1%;
+				border-style:inset;
+				background-color: blue;
+				color:white;
+				margin : 5%;
+				padding:4%;
+				width:2%;
+				height:2%;
+			}
+		</style>
+	</head>	
+	<body>
+		<section>Evening</section>	
+	</body>	
+</html>

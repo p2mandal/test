@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<style>
+			section#homesection{
+				display:none;
+			}
+			#homesection header{
+				font-weight: bold;
+				font-size: larger;
+				margin-left: 40%;
+			}
+			#homesection a{
+				margin-top:-2%;
+				float:right;
+			}
+			input[type=text] {
+				width:90%;
+				margin-left: 4%;
+			}
+			input[type=password] {
+				width:90%;
+				margin-left: 4%;
+			}
+			input[type=button]{
+				margin-left:4%;
+			}
+			label {
+				margin-left:4%;
+				color:red;
+				display:none;
+			}
+			section#loginsection {
+				border-width: 0.2%;
+				width : 20%;
+				border-style: outset;
+				margin-left : 35%;
+				margin-top : 15%;
+				padding : 1%;
+			}
+		</style>
+		<script>
+			function logout(){
+				document.getElementById("homesection").style.display = "none";
+				document.getElementById("loginsection").style.display = "block";
+			}
+			function login(){
+				var userName = document.getElementById("username").value;
+				var password = document.getElementById("password").value;
+				var errorLabel = document.getElementById("errorlabel");
+				if(userName == "admin" && password == "admin"){
+					errorLabel.style.display = "none";
+					document.getElementById("homesection").style.display = "inline";
+					document.getElementById("loginsection").style.display = "none";
+				}
+				else{
+					errorLabel.style.display = "inline";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<section id="loginsection">
+			<input type="text" placeholder="user name" id="username" value="admin"><br/>
+			<input type="password" placeholder="password" id="password" value="admin"><br/><br/>
+			<label id="errorlabel">Invalid credentials</label><br/>
+			<input type="button" value="Login" onclick="login()">
+		</section>	
+		
+		<section id="homesection">
+			<header>Welcome admin</header>
+			<a href="#" onclick="logout();">Logout</a> 	
+		</section>	
+
+
+
+
+
+
+
+
+
+	</body>
+</html>

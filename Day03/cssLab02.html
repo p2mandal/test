@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<script>
+			function changeFont(){
+				var slider = document.getElementById("slider");
+				var message = document.getElementById("message");
+				message.style.fontSize = slider.value + "px";
+			}
+		</script>
+	</head>
+	<body>
+		<input type="range" oninput="changeFont()" id="slider" max="100" min="1" value="10"><br/>
+		<section id="message">Simple</section>
+
+	</body>
+</html>

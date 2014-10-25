@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			$().ready(init);
+			function talkToServer(){
+				$.ajax({
+					url : "http://127.0.0.1:9090/Day14/server.jsp",
+					dataType : "jsonp",
+					jsonpCallback : "pune",
+					data : {
+						name : $("#name").val()
+					},
+					success : function(response){
+						$("#message").html(response.info);	
+					}
+				});
+			}
+			function init(){
+				$("input:button").on("click",talkToServer);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="Name"><br/>
+		<input type="button" value="Click">
+		<h1 id="message"></h1>
+	</body>
+</html>		

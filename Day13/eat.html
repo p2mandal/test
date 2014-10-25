@@ -1,0 +1,21 @@
+<html  ng-app="EatModule">
+	<head>
+		<script src="angular.min.js"></script>
+		<script src="modules.js"></script>
+		<script src="controllers.js"></script>
+	</head>	
+	<body ng-controller="MainController">
+
+		<section ng-controller="LoginController" ng-style="loginstyle">
+			<input type="email" placeholder="Email:" ng-model="email"><br/>
+			<input type="password" placeholder="Password:" ng-model="password"><br/>
+			<h6 ng-style="errorstyle">Invalid credentials</h6>
+			<input type="button" value="Login" ng-click="login()">
+		</section>
+
+		<section ng-style="homestyle" ng-controller="HomeController">
+			<h1>Welcome home</h1>
+		</section>	
+
+	</body>
+</html>	

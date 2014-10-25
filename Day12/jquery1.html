@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			$().ready(init);
+			function init(){
+				$("input:button").on("click",function(){
+					$("#message").html("Hello " + $("#name").val());
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="name"><br/>
+		<input type="button" value="Click">
+		<h1 id="message"></h1>
+	</body>	
+</html>

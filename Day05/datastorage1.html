@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script>
+			//LocalStorage, SessionStorage
+			//Key-Value
+			//setItem,getItem,removeItem
+
+			if(sessionStorage.getItem("today") == null){
+				sessionStorage.setItem("today","Welcome to Day 05");
+				sessionStorage.setItem("agenda","HTML 5");
+				alert("Just created data in sessionstorage");
+			}
+			else
+				alert(sessionStorage.getItem("today") + ", " + sessionStorage.getItem("agenda"));
+
+/*
+			if(localStorage.getItem("welcome") == null){
+				localStorage.setItem("welcome","Welcome to Pune");
+				localStorage.setItem("training","Accenture");
+				alert("Just created welcome in LS");
+			}
+			else
+				alert(localStorage.getItem("welcome") + ", " + localStorage.getItem("training"));
+*/				
+		</script>
+	</head>
+	<body>
+		<h1>Data storage in HTML 5</h1>
+	</body>	
+</html>

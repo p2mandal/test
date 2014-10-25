@@ -1,0 +1,19 @@
+Create a function add in such a way that you can 
+add all the numbers passed into it and print the sum. 
+For example you can use the add function like this.
+
+
+add(10,1,89,62,12);
+add(10,1,89,62,12,45,6,7,8,28,39,9,3);
+add(3,4); 
+
+
+
+Create a function max in such a way that it prints the largest of the numbers passed to it. 
+For example you can use the max function like this.
+
+max(10,1,89,62,12);//should print 89
+max
+(10,1,49,62,12,45,6,7,8,28,39,9,3);//should print 62
+max(3,4); //should print 4
+

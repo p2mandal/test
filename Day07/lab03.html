@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			function enterPart1(){
+				if($("#part1").val().length == 3)
+					$("#part2").focus();
+			}
+			function enterPart2(){
+				if($("#part2").val().length == 3)
+					$("#part3").focus();	
+			}
+			function enterPart3(){
+				if($("#part3").val().length == 3)
+					$("#part4").focus();
+			}
+			function enterPart4(){
+				if($("#part4").val().length == 3)
+					$("#clickbutton").focus();	
+			}
+			function buttonClicked(){
+				$("#part1").attr("disabled","disabled");
+				$("#part2").attr("disabled","disabled");
+				$("#part3").attr("disabled","disabled");
+				$("#part4").attr("disabled","disabled");
+			}
+			$().ready(function(){
+				$("#part1").css("width","5%");
+				$("#part2").css("width","5%");
+				$("#part3").css("width","5%");
+				$("#part4").css("width","5%");
+				$("#part1").on("keyup",enterPart1);
+				$("#part2").on("keyup",enterPart2);
+				$("#part3").on("keyup",enterPart3);
+				$("#part4").on("keyup",enterPart4);
+				$("#clickbutton").on("click",buttonClicked);
+			});
+		</script>
+	</head>
+	<body>
+		IP address <input type="text" id="part1">.
+		<input type="text" id="part2">.
+		<input type="text" id="part3">.
+		<input type="text" id="part4">
+		<input type="button" value="Click" id="clickbutton">
+	</body>	
+</html>

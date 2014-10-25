@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script>
+			window.onload = init;
+			var xhr;
+			function init(){
+				window.setInterval("getTimeFromServer()",1000);
+			}
+
+			function getTimeFromServer(){
+				xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = displayTime;
+				xhr.open("GET","time.jsp");
+				xhr.send();
+			}
+			function displayTime(){
+				if(xhr.readyState == 4){
+					var response = xhr.responseText;
+					document.getElementById("message").innerHTML = response;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1 id="message"></h1>
+	</body>
+</html>

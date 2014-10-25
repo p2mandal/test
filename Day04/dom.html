@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<style>
+			rajini{
+
+			}
+		</style>
+		<script>
+			window.onload = init;
+
+			function init(){
+				document.getElementById("btn").onclick = function(){
+					console.log("Button clicked");
+				};
+				console.log(window.document.head.style);
+				console.log(window.document.head);
+				//window.open("http://www.google.com");
+				//window.close();
+				confirm("Do you want to cry?");//window.confirm
+				alert("WTH");	//window.alert("WTH");
+				var header = document.getElementById("header");//window.document.get....
+				console.log(header);
+			}
+		</script>
+	</head>
+	<body>
+		<h1 id="header">Tuesday</h1>
+		<input type="button" id="btn">
+
+	</body>
+</html>

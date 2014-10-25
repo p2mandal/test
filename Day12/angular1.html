@@ -1,0 +1,20 @@
+<html ng-app="Accenture">
+	<head>
+		<script src="angular.min.js"></script>
+		<script>
+			angular.module("Accenture",[]).
+				controller("sample",function($scope){
+					$scope.name = "";
+					$scope.message = "";
+					$scope.click = function(){
+						$scope.message = "Hello " + $scope.name;
+					}
+				});
+		</script>
+	</head>
+	<body ng-controller="sample">
+		<input type="text" ng-model="name" id="name" placeholder="name"><br/>
+		<input type="button" value="Click" ng-click="click()">
+		<h1 id="message">{{message}}</h1>
+	</body>	
+</html>

@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<style>
+			section {
+				border-width: 1%;
+				border-color: black;
+				border-radius: 2%;
+				border-style: inset;
+				margin: 10%; 
+				width:40%;
+				height:40%;
+			}
+		</style>
+		<script>
+			window.onload = init;
+			function weHaveStartedDragging(e){
+				var text = e.srcElement.innerHTML;
+				e.dataTransfer.setData("info",text);
+			}
+			function weHaveDroppedInTheBox(e){
+				var text = e.dataTransfer.getData("info");
+				document.getElementById("box").innerHTML = "<input type='button' value='" + text + "'>";
+				document.getElementById("message").innerHTML = "";
+			}
+
+			function weHaveStartedDraggingOverTheBox(e){
+				//console.log("weHaveStartedDraggingOverTheBox");
+				e.preventDefault();
+			}
+			function init(){
+				document.getElementById("message").ondragstart = weHaveStartedDragging;
+				document.getElementById("box").ondragover = weHaveStartedDraggingOverTheBox;
+				document.getElementById("box").ondrop = weHaveDroppedInTheBox;
+			}
+
+
+
+
+
+		</script>
+	</head>
+	<body>
+		<header id="message" draggable="true">Sample text</header> <br/><br/>
+		<section id="box">
+		</section>	
+	</body>
+</html>
+
+
+

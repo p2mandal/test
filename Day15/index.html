@@ -1,0 +1,20 @@
+<html ng-app="Movies">
+	<head>
+		<title>Rotten Tomatoes</title>
+		<script src="scripts/angular.js"></script>
+		<script src="app.js"></script>
+		<script src="controllers/SearchController.js"></script>
+		<script src="controllers/RecentlyViewedController.js"></script>
+	</head>
+	<body>
+		<article ng-controller="SearchController">
+			<input type="text" placeholder="Enter your movie" 
+				ng-model="moviename"><br/>
+			<input type="button" value="Search" ng-click="searchMovies()">
+			<hr/>
+			<section ng-include="'views/searchresults.html'"></section>		
+		</article>
+		<section ng-controller="RecentlyViewedController">
+		</section>	
+	</body>
+</html>

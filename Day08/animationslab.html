@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<style>
+			@-webkit-keyframes around{
+				0%{
+					position:relative;
+					left:8%;
+					top:45%;
+				}
+				25%{
+					position:relative;
+					left:8%;
+					top:0.5em;	
+				}
+				50%{
+					position:relative;
+					left:38%;
+					top:0%;	
+				}
+				75%{
+					position:relative;
+					left:38%;
+					top:52%;	
+				}
+				100%{
+					position:relative;
+					left:8%;
+					top:52%;
+				}
+			}
+			#ball{
+				-webkit-animation-name: around;
+				-webkit-animation-duration: 8s;
+				-webkit-animation-timing-function:linear;
+				-webkit-animation-iteration-count:infinite;
+				border-width:1%;
+				border-radius:1.5em;
+				border-style: inset;
+				height:4%;
+				width:2.5%;
+				position:relative;
+				left:8%;
+				top:45%;
+				background-color: yellow;
+			}
+			#box {
+				border-width:1%;
+				border-radius:1.5em;
+				border-style: inset;
+				height:40%;
+				width:25%;
+				background-color: black;	
+				position:relative;
+				left:12%;
+				top:5%;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="ball"></section>
+		<section id="box"></section>
+	</body>
+</html>

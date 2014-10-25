@@ -1,0 +1,27 @@
+<html ng-app>
+	<head>
+		<script src="angular.min.js"></script>
+		<style>
+			.box1,.box2,.box3{
+				border-width: 1%;
+				border-style: inset;
+				margin: 2%;
+				width:5%;
+			}
+			.box1:hover{
+				background-color: red;
+			}
+			.box2:hover{
+				background-color: green;
+			}
+			.box3:hover{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<section ng-class="'box1'">R</section>	
+		<section ng-class="'box2'">G</section>	
+		<section ng-class="'box3'">B</section>	
+	</body>	
+</html>		

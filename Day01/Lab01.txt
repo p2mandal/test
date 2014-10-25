@@ -1,0 +1,11 @@
+Create a file Lab01.js.
+Create a collection of numbers from 1 to 10 
+dynamically and implement the following.
+
+
+1) Print the even numbers 
+in the collection
+
+2) Print the sum of all odd numbers in the collection
+
+3)Create a separate array that contains all the odd numbers

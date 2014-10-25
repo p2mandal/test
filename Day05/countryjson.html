@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script>
+			window.onload = init;
+			var xhr;
+			function processInfo(){
+				if(xhr.readyState == 4){
+					var response = xhr.responseText;
+					var obj = JSON.parse(response);
+					document.getElementById("output").innerHTML = obj.capital + ", " + obj.continent;
+				}
+			}
+			function getInfoFromServer(){
+				xhr = new XMLHttpRequest();
+				var country = document.getElementById("country").value;
+				xhr.open("POST","world.jsp?country="+country);
+				xhr.onreadystatechange = processInfo;
+				xhr.send();	
+			}
+			function init(){
+				document.getElementById("getinfobtn").onclick = getInfoFromServer;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="country" id="country"><br/>
+		<input type="button" value="Get Info" id="getinfobtn">
+		<h4 id="output"></h4> 
+	</body>
+</html>

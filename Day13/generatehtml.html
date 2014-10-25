@@ -1,0 +1,21 @@
+<html ng-app="GenerateHTML">
+	<head>
+		<script src="angular.min.js"></script>
+		<script>
+			angular.module("GenerateHTML",[]).
+			  controller("main",function($scope,$sce){
+			  	$scope.message = "";
+			  	$scope.addUI = function(){
+			  		var htmlSnippet = $scope.message;
+			  		htmlSnippet += "<input type='checkbox'><input type='text'>";
+			  		$scope.message = $sce.trustAsHtml(htmlSnippet); 
+			  	}
+			  });
+		</script>
+	</head>
+	<body ng-controller="main">
+		<section ng-bind-html="message">
+		</section>
+		<input type="button" value="Click" ng-click="addUI()">
+	</body>	
+</html>	

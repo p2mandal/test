@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script>
+			function doSomething(){
+				var nameTextBox = document.getElementById("nametextbox");
+				var name = nameTextBox.value;
+
+				var messageH3 = document.getElementById("messageh3");
+				messageH3.innerHTML = "Hello " + name;
+			}
+		</script>
+	</head>	
+	<body>
+		<input id="nametextbox" type="text" placeholder="name"><br/>
+		<input id="clickbutton" onclick="doSomething()" type="button" value="Click"><br/>
+		<h3 id="messageh3"></h3>	
+	</body>	
+</html>

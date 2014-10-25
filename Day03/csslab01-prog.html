@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<script>
+			function init(){
+				var mainHeader = document.getElementById("mainheader");
+				mainHeader.style.fontSize = "larger";
+				mainHeader.style.fontWeight = "bold";
+				mainHeader.style.backgroundColor = "red";
+				mainHeader.style.borderWidth = "1%";
+				mainHeader.style.borderStyle = "inset";
+				
+				var scottHeader = document.getElementById("scottheader");
+				scottHeader.style.fontSize = "larger";
+				scottHeader.style.fontWeight = "bold";
+				
+				var venkatHeader = document.getElementById("venkatheader");
+				venkatHeader.style.fontSize = "larger";
+				venkatHeader.style.fontWeight = "bold";
+
+				var liElems = document.getElementsByTagName("li");
+				for(var i=0;i<liElems.length;i++){
+					var li = liElems[i];
+					li.style.display = "inline";
+				} 
+				var articles = document.getElementsByTagName("article");
+				for(var i=0;i<articles.length;i++){
+					var article = articles[i];
+					article.style.marginTop = "5%";
+				}
+				var asideElems = document.getElementsByTagName("aside");
+				for(var i=0;i<asideElems.length;i++){
+					var aside = asideElems[i];
+					aside.style.float = "right";
+					aside.style.width = "15%";
+				}
+			}
+		</script>
+	</head>
+	<body onload="init();">
+		<header id="mainheader">Speakers</header>
+		<nav>
+			<ul id="navul">
+				<li>Sessions |</li>
+				<li>Schedule |</li>
+				<li>Speakers</li>
+			</ul>
+		</nav>
+		<article>
+			<header id="scottheader">Scott Davis</header>
+			<section>
+				Thirsty Head<br/>
+				Projector, Large room
+			</section>
+			<aside>Scott is a cool guy with long hair</aside>	
+		</article>	
+		<article>
+			<header id="venkatheader">Venkat Subramaniam</header>
+			<section>
+				Agile Developer
+			</section>
+			<aside>Venkat is a programmer</aside>	
+		</article>	
+	</body>
+</html>

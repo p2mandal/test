@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<script>
+			window.onload = init;
+			var path = window.location.pathname;
+			function doSomething(){
+				var name = document.getElementById("name").value;
+				document.getElementById("message").innerHTML = "Hi " + name;
+				var data = {
+					nameentered : name
+				};
+				var pageTitle = name;
+				var url = path + "/" + name;
+				window.history.pushState(data,pageTitle,url);
+			}
+			function backOrForwardButtonClicked(e){
+				var data = e.state;
+				document.getElementById("name").value = data.nameentered;
+				document.getElementById("message").innerHTML = "Hi " + data.nameentered;
+			}
+			function init(){
+				document.getElementById("clickbutton").onclick = doSomething;
+				window.onpopstate = backOrForwardButtonClicked;
+			}
+		</script>
+	</head>	
+	<body>
+		<input type="text" placeholder="Name" id="name"><br/>
+		<input type="button" value="Click" id="clickbutton">
+		<h2 id="message"></h2>
+	</body>	
+</html>

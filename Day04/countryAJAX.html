@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script>
+			var xhr;
+			function callMe(){
+				if(xhr.readyState == 4){
+					var response = xhr.responseText;
+					document.getElementById('capital').innerHTML = response;
+				}
+			}
+			function getInfo(){
+				var country = document.getElementById("country").value;
+				xhr = new XMLHttpRequest();
+				var url = "accentureAJAX.jsp?country=" + country;
+				xhr.onreadystatechange = callMe;
+				xhr.open("POST",url);
+				xhr.send();
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="country" 
+			id="country"><br/>
+		<input type="button" value="Click" onclick="getInfo();">	
+		<h2 id="capital"></h2>
+	</body>
+</html>

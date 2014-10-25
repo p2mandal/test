@@ -1,0 +1,32 @@
+<html  ng-app="SweatModule">
+	<head>
+		<script src="angular.min.js"></script>
+		<script src="angular-sanitize.min.js"></script>
+		<script>
+			angular.module("SweatModule",["ngSanitize"]).
+				controller("ThaliController",function($scope){
+					$scope.menuitems = [];
+					$scope.message = "";
+					$scope.placeOrder = function(){
+						$scope.menuitems.push($scope.food);
+						var message = $scope.message;
+						message += "<h4>" + $scope.food + "</h4>";
+						$scope.message = message;	
+					}
+				});
+		</script>
+	</head>
+	<body ng-controller="ThaliController">
+		<input type="text" ng-model="food" placeholder="food item">
+		<br/>
+		<input type="button" value="Place Order" ng-click="placeOrder()">
+		<br/>
+		<ul>
+			<li ng-repeat="key in menuitems">
+				{{key}}
+			</li>
+		</ul>	
+		<section ng-bind-html="message">
+		</section>	
+	</body>	
+</html>		

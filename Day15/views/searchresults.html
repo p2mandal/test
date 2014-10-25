@@ -1,0 +1,18 @@
+<h5>{{result}}</h5>
+<table border="0" cellspacing="1" cellpadding="2">
+	<tbody>
+		<tr ng-repeat="movie in moviescollection">
+			<td>
+				<img ng-src="{{movie.posters.thumbnail}}" style="height:90%;"></img>
+			</td>
+			<td>
+				{{movie.title}}<br/>
+				<span ng-repeat="actor in movie.abridged_cast">
+					{{actor.name}},
+				</span>
+				<br/>
+				<span>Running time: {{movie.runtime}}	
+			</td>		
+		</tr>	
+	</tbody>	
+</table>	

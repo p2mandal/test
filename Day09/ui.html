@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.theme.min.css">
+		<script>
+			$().ready(init);
+			function init(){
+
+				$(document).tooltip();
+				$("#mydate").datepicker();
+				$("input:button").button();
+			}
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td tabindex="1">Adfsdf</td>
+				<td tabindex="2">dsfdsfsdf</td>
+				<td tabindex="3">Adfsdf</td>
+				<td tabindex="4">dsfdsfsdf</td>
+			</tr>
+			<tr>
+				<td>Adfsdf</td>
+				<td>dsfdsfsdf</td>
+				<td>Adfsdf</td>
+				<td>dsfdsfsdf</td>
+			</tr>
+			<tr>
+				<td>Adfsdf</td>
+				<td>dsfdsfsdf</td>
+				<td>Adfsdf</td>
+				<td>dsfdsfsdf</td>
+			</tr>	
+		</table>	
+		<input type="text" id="mydate" 
+			title="Enter you date of birth"><br/>
+		<input type="button" value="Click">
+	</body>
+</html>

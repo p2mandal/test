@@ -1,0 +1,47 @@
+#logoutlink {
+	float:right;
+	color:white;
+}
+#home {
+	background-color: black;
+	color : white;
+	display:none;
+}
+table {
+	color:white;
+}
+header#main{
+	margin-bottom: 2%;
+	font-weight: bold;
+	font-size: larger;
+}
+section#fromtoboxes{
+	margin-top:1%;
+}
+section#fromtoboxes input[type=text]{
+	width: 20em;
+}
+#swap{
+	background-color: yellow;
+	color:black;
+	border-width: 1%;
+	border-radius:30%;
+}
+section#dateboxes{
+	margin-top: 1%;
+}
+section#passengersbuttons {
+	margin-top: 1%;
+}
+section#passengersbuttons table{
+	font-size: 0.8em;
+}
+section#passengersbuttons input {
+	width: 2em;
+}
+section#travelradiobuttons{
+	margin-bottom: 2%;
+}
+section#travelradiobuttons label {
+	margin-right: 20%;
+}

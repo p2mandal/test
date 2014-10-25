@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<script>
+			var arr = [];
+			
+			function constructTable(){
+				
+				var table = "<table border='1'>";
+				table += "<thead><tr><th>ID</th><th>Location</th></thead";
+				table += "<tbody>";
+				for(var key in arr){
+					table += "<tr>";
+					table += "<td>" + key + "</td>";
+					table += "<td>" + arr[key] + "</td>";
+					table += "</tr>";
+				}
+				table += "</tbody>";
+				table += "</table>";
+
+				document.getElementById("resultssection").innerHTML = table;
+			}
+
+			function addButtonClicked(){
+				var id = document.getElementById("idtext").value;
+				var location = document.getElementById("location").value;
+				
+				if(location != "--SELECT--"){
+					arr[id] = location;    //--->>>Very Very Important! Note
+					constructTable();
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+		Id<input type="text" id="idtext"><br/>
+		
+		Location<select id="location">
+					<option>--SELECT--</option>
+					<option>Chennai</option>
+					<option>Pune</option>
+					<option>Mumbai</option>
+				</select><br/>
+
+		<input type="button" onclick="addButtonClicked()" value="Add"><br/>
+		
+		<section id="resultssection"></section>
+
+	</body>
+</html>

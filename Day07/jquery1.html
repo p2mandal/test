@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+
+		/*
+			window.onload = init;
+			function haveFun(){
+				var plans = document.getElementById("plans").value;
+				document.getElementById("message").innerHTML = plans;
+				document.getElementById("message").style.color = "red";
+			}
+			function init(){
+				document.getElementById("funbutton").onclick = haveFun;
+			}
+		*/
+		$().ready(init);
+		function init(){
+			$("li").css("background-color","blue");
+			$("#funbutton").on("click",haveFun);
+		}
+		function haveFun(){
+			var plans = $("#plans").val();
+			$("#message").html(plans);
+			$("#message").css("color","red");
+			$("#mainheader").hide();
+			//document.getElementById("mainheader").style.display = "none";
+		}	
+		</script>
+	</head>
+	<body>
+		<header id="mainheader">TGIF</header>
+		<hr/>
+		<header>Options</header>
+		<ul>
+			<li>Drink</li> <li>Movie</li> <li>Sleep</li> <li>Wash clothes</li> <li>Fight</li>
+			<li>ANything else considered waste of time</li>
+		</ul>	
+		<input type="text" id="plans" placeholder="Friday night plans?">
+		<input type="button" value="Have Fun" id="funbutton">
+		<h3 id="message"></h1> 		
+
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>

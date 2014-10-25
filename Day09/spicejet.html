@@ -1,0 +1,228 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.theme.min.css">
+		<style>
+			//.ui-dialog-titlebar {display:none}
+			#fromtextbox{
+				float: left;
+				position:relative;
+				left : 2%;
+				padding-left: 2%;
+			}
+			#menu {
+				padding:2%;
+			}
+			#menu1,#menu2,#menu3,#menu4,#menu5,#menu6 {
+				float:left;
+				padding-left: 3%
+			}
+      </style>
+      <script src="searchairports.js"></script>
+		<script>
+			$().ready(init);
+
+			function airportCellClicked(){
+				$("#fromtosection").dialog("close");
+			}
+			function mouseOverAirport(){
+				$("td").css("background-color","white");
+				$(this).css("background-color","pink");
+				$("#fromtextbox").val($(this).text());
+			}
+			function mouseOutAirport(){
+				$(this).css("background-color","white");
+			}
+
+			function displayAirports(){
+				if(GLOBAL.data.airports != undefined){
+					$("#fromtosection").dialog({minWidth:650});
+				}
+				else{
+						$.ajax({
+							url : "airports.json",
+							dataType : "json",
+							success : function(response){
+								var airports = response.airports;
+								GLOBAL.data = response;
+								console.log(GLOBAL.data);
+								var table = "<table style='background-color:white'>";
+								var counter = 1;
+								for(var i=0;i<airports.length;i++){			
+									var airport = airports[i];
+									var city = airport.city;
+									var code = airport.code;
+									if(i == 0){
+										table += "<tr>";
+									}
+									else if( i%4 != 0){
+										table += "<td>" + city + "(" + code + ")" + "</td>";
+									}
+									else{
+										table += "</tr>";
+										table += "<tr>";
+										table += "<td>" + city + "(" + code + ")" + "</td>";	
+									}
+								}
+								table += "</table>";
+								$("#fromtosection").append(table);
+								$("#fromtosection").dialog({ 
+									  minWidth: 670,
+									  position:{ 
+									  	my: "left top", 
+									  	at: "left bottom", 
+									  	of: $("#fromtextbox") 
+									  } 
+								});
+								$("td").on("mouseover",mouseOverAirport)
+									   .on("mouseout",mouseOutAirport)
+									   .on("click",airportCellClicked);
+							}
+						});					
+				}
+				var selectedAirportText = $("#fromtextbox").val();
+				$("td").each(function(){
+					if($(this).text() == selectedAirportText)
+						$(this).css("(background-color","pink");
+					else
+						$(this).css("background-color","white");
+				});
+			}
+			function loadAirports(){
+				$.ajax({
+							url : "airports.json",
+							dataType : "json",
+							success : function(response){
+								var airports = response.airports;
+								GLOBAL.data = response;
+							}
+				});	
+			}
+			function displayAirports(airports){
+				var table = "<table style='background-color:white'>";
+				var numberOfCols = 3;
+				var counter = 0;
+				for(var key in airports){
+					counter++;
+					if(counter == 1)
+						table += "<tr>";
+					var city = airports[key].city;
+					var code = airports[key].code;
+					table += "<td>" + city + "(" + code + ")" + "</td>";
+					if(counter == numberOfCols){
+						table += "</tr>";
+						counter = 0;
+					}
+				}
+				if(airports.length == 0){
+					table += "<tr><td>No matches found</td></tr>";
+				}
+				table += "</table>";
+				$("#fromtosection").html(table);
+				$("#fromtosection").dialog({ 
+					  minWidth: 670,
+					  position:{ 
+					  	my: "left top", 
+					  	at: "left bottom", 
+					  	of: $("#fromtextbox") 
+					  } 
+				});
+				$("td").on("mouseover",mouseOverAirport)
+					   .on("mouseout",mouseOutAirport)
+					   .on("click",airportCellClicked);
+		}
+			function searchAndDisplayAirports(){
+				searchAirports();
+				displayAirports(GLOBAL.searchResults);
+			}
+			function init(){
+				displayMenu();
+				loadAirports();
+				//$("#fromtextbox").on("click",displayAirports);
+				$("#fromtextbox").on("keyup",searchAndDisplayAirports);
+			}
+			function displayMenu(){
+				$("#menu1,#menu2,#menu3,#menu4,#menu5,#menu6").menu({ 
+					position: { 
+						my: "left top", 
+						at: "left top+30",
+						collision : "fit"
+					} 
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<section id="menu">
+			<ul id="menu1">
+		         <li>About Us
+		            <ul>
+		               <li>Careers</li>
+		               <li>Cargo</li>
+		               <li>Charter Request</li>
+		               <li>Corporate Review</li>
+		               <li>Fleet</li>
+		               <li>Spice Route Magazine</li>
+		            </ul>
+		         </li>
+		    </ul>
+		    <ul id="menu2">     
+		         <li>Contact us
+		            <ul>
+		               <li>Corporate Head Office</li>
+		               <li>Spice Airports</li>
+		               <li>Spice City International Office</li>
+		            </ul>
+		         </li>
+		    </ul>     
+		    <ul id="menu3">     
+		         <li>Investors
+		            <ul>
+		               <li>Corporate Governance</li>
+		               <li>Financial Information</li>
+		               <li>Notices</li>
+		               <li>Outcome of AGM</li>
+		               <li>Press Release & News</li>
+		               <li>Shareholding Pattern</li>
+		            </ul>
+		         </li>
+	      	</ul>
+		    <ul id="menu4">     
+		         <li>SpiceAdd-ons
+		            <ul>
+		               <li>Domestic Travinsure</li>
+		               <li>Indian Armed Forces Personnel</li>
+		               <li>Inflight meals</li>
+		               <li>SpiceJet SBI Card</li>
+		               <li>Student Discount</li>
+		            </ul>
+		         </li>
+	      	</ul>
+		    <ul id="menu5">     
+		         <li>SpiceOffers
+		            <ul>
+		               <li>Friends and Family</li>
+		               <li>UAE Visa</li>
+		               <li>SpiceJet share the love</li>
+		            </ul>
+		         </li>
+	      	</ul>
+	      	<ul id="menu6">     
+		         <li>Travel Info
+		            <ul>
+		               <li>FAQs</li>
+		               <li>Terms of Carriage</li>
+		               <li>Special Assistance</li>
+		               <li>Corporate Review</li>
+		               <li>Carriage for Live animals</li>
+		            </ul>
+		         </li>
+	      	</ul>
+      </section><br/>
+      <input type="text" id="fromtextbox"><br/>
+      <section id="fromtosection" style="width:50%">
+	  </section>
+    </body>
+</html>		

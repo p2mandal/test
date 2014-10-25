@@ -1,0 +1,42 @@
+<html ng-app="Lab02">
+	<head>
+		<style>
+			section{
+				border-width: 1%;
+				border-style: inset;
+				margin: 2%;
+				width:5%;
+			}
+		</style>
+		<script src="angular.min.js"></script>
+		<script>
+			var lab02 = angular.module("Lab02",[]);
+			lab02.controller("Lab02Controller",function($scope){
+				$scope.box1Over = function(){
+					$scope.box1style = {"background-color":"red"};
+				}
+				$scope.box1Leave = function(){
+					$scope.box1style = {"background-color":"white"};
+				}
+				$scope.box2Over = function(){
+					$scope.box2style = {"background-color":"green"};
+				}
+				$scope.box2Leave = function(){
+					$scope.box2style = {"background-color":"white"};
+				}
+				$scope.box3Over = function(){
+					$scope.box3style = {"background-color":"blue"};
+				}
+				$scope.box3Leave = function(){
+					$scope.box3style = {"background-color":"white"};
+				}
+			});
+		</script>
+
+	</head>
+	<body ng-controller="Lab02Controller">
+		<section ng-style="box1style" ng-mouseover="box1Over()" ng-mouseleave="box1Leave()">R</section>	
+		<section ng-style="box2style" ng-mouseover="box2Over()" ng-mouseleave="box2Leave()">G</section>	
+		<section ng-style="box3style" ng-mouseover="box3Over()" ng-mouseleave="box3Leave()">B</section>	
+	</body>	
+</html>		

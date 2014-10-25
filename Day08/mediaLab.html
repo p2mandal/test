@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<style>
+			li{
+				list-style: none;
+			}
+			#playlist {
+				border-width: 1%;
+				border-style: inset;
+				width:40%;
+				height:30%;
+				margin:5%;
+			}
+			#player{
+				margin:5%;	
+			}
+		</style>	
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			var GLOBAL = {
+				songs : [],
+				lastPlaySongId : "",
+				lastPlayedTime : 0
+			};
+			$().ready(init);
+
+			function loadSong(songId){
+				var song = GLOBAL.songs[songId];
+				document.getElementById("audio1").src = song;
+				document.getElementById("audio1").load();
+			}			
+			function playSong(){
+				var songId = $(this).attr("id");
+				loadSong(songId);
+				sessionStorage.setItem("songid",songId);
+			}
+			function displayPlayList(){
+				for(var key in GLOBAL.songs){
+					var li = "<li id='" + key + "'>" + GLOBAL.songs[key] + "</li>";
+					$("ul").append(li);
+				}
+				$("ul li").on("dblclick",playSong);
+			}
+			function initializeSongs(){
+				GLOBAL.songs["song1"] = "tumhiho.mp3";
+				GLOBAL.songs["song2"] = "rockyou.mp3";
+				GLOBAL.songs["song3"] = "underpressure.mp3";
+			}
+			function songLoaded(){
+				if(GLOBAL.lastPlayedTime != 0){
+					document.getElementById("audio1").currentTime = GLOBAL.lastPlayedTime;
+				}
+				document.getElementById("audio1").play();
+			}
+			function songTimeUpdated(){
+				var time = document.getElementById("audio1").currentTime;	
+				sessionStorage.setItem("currenttime",time);
+			}
+			function init(){
+				document.getElementById("audio1").onloadeddata = songLoaded;
+				document.getElementById("audio1").ontimeupdate = songTimeUpdated;
+				initializeSongs();
+				displayPlayList();
+				if(sessionStorage.getItem("songid") != null){
+					GLOBAL.lastPlaySongId = sessionStorage.getItem("songid");
+					GLOBAL.lastPlayedTime = sessionStorage.getItem("currenttime");
+					loadSong(GLOBAL.lastPlaySongId);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<section id="playlist">
+			<ul>
+			</ul>
+		</section>
+		<section id="player">
+			<audio id="audio1" src="" controls></audio><br/>
+			<input type="button" value="Play" id="playbutton">
+			<input type="button" value="Pause" id="pausebutton">
+		</section>	
+	</body>	
+</html>

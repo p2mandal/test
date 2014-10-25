@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery-accenture.js"></script>
+		<script>
+			$().ready(init);
+			function init(){
+				$("section,header").underline().bold().italic();
+				$("#msg").date();
+				$("section").color("green");
+				$("header").color("red");
+				$("header").font("4em");
+				$("header").uc();
+
+			}
+		</script>
+	</head>
+	<body>
+		<h1 id="msg"></h1>
+		<section>Tuesday</section>
+		<header>Salary day</header>
+	</body>	
+</html>

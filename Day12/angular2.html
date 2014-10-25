@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<script src="angular.min.js"></script>
+		<script>
+			
+			var fk = angular.module("Flipkart",[]);
+			fk.controller("ShoesController",function($scope){
+				console.log("shoes controller loaded");
+
+			});
+
+			fk.controller("ToysController",function($scope){
+				console.log("toys controller loaded");
+			});
+		</script>
+	</head>
+	<body ng-app="Flipkart">
+		<section ng-controller="ShoesController">
+			View all shoes
+			<input type="text" ng-model="collections">
+			<h3>{{collections}}</h3>
+		</section>
+		<section ng-controller="ToysController">
+			View all toys
+		</section>
+		<section ng-controller="ShoesController">
+			View all kids shoes
+			<input type="text" ng-model="collections">
+			<h3>{{collections}}</h3>
+		</section>	
+	</body>
+</html>		

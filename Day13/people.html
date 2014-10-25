@@ -1,0 +1,36 @@
+<html ng-app="PeopleModule">
+	<head>
+		<script src="angular.min.js"></script>
+		<script src="labmodules.js"></script>
+		<script src="labcontrollers.js"></script>
+	</head>
+	<body ng-controller="MainController">
+
+		<section ng-controller="AddPersonFormController">
+			<input type="text" placeholder="Name" ng-model="name"><br/>
+			<input type="text" placeholder="Age" ng-model="age"><br/>
+			<input type="button" value="Add" ng-click="addPerson()">
+		</section>	
+
+		<section ng-controller="PeopleDisplayController" ng-style="peopledisplaystyle">
+			<table border="1" style="background-color:yellow;color:black">
+				<thead>
+					<tr>
+						<th>Name</th><th>Age</th><th>Select</th>
+					</tr>	
+				</thead>
+				<tbody>
+					<tr ng-repeat="person in persons">
+						<td>{{person.name}}</td>
+						<td>{{person.age}}</td>
+						<td>
+							<input type="checkbox" 
+							      ng-model="person.selectedForRemoval">
+						</td>
+					</tr>	
+				</tbody>	
+			</table>
+			<input type="button" value="Remove" ng-click="removePersons()">	
+		</section>	
+	</body>	
+</html>	

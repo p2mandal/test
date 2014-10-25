@@ -1,0 +1,25 @@
+li {
+	display : inline;	
+}
+section#calc{
+	position:relative;
+	left:65%;
+	top : 10%;
+	width:30%;
+	height:20%;
+}
+section#box{
+	border-width: 1%;
+	border-color: black;
+	border-radius: 2%;
+	border-style: inset;
+	float: right;
+	position:relative;
+	top:-35%; 
+	width:40%;
+	height:40%;
+}
+section#numbers {
+	width: 40%;
+	height : 40%;
+}

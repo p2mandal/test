@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="lab01.css">
+		<script src="lab01.js"></script>
+	</head>
+	<body>
+		<header id="main">Book Domestic flights</header>
+		<article>
+			<section id="travelradiobuttons">
+				<input type="radio" name="travel" checked id="onewayrbtn">
+				<label>ONE WAY</label>
+				<input type="radio" name="travel" id="roundtriprbtn">
+				<label>ROUND TRIP</label>
+			</section>
+			<section id="fromtoboxes">
+				<table cellspacing="5">
+					<tr>
+						<td colspan="2">FROM</td>
+						<td>TO</td>
+					</tr>	
+					<tr>
+						<td><select id="fromlb"></select></td>
+						<td><span id="swap">-></span></td>
+						<td><select id="tolb"></select>
+						</td>
+					</tr>	
+				</table>	
+				</section>
+			</section>
+			<section id="dateboxes">
+				<table>
+					<tr>
+						<td>DEPARTURE</td>
+						<td>RETURN</td>
+					</tr>	
+					<tr>
+						<td><input type="date" id="fromdate"></td>
+						<td><input type="date" disabled id="returndate"></td>
+					</tr>					
+				</table>
+			</section>
+			<section id="passengersbuttons">
+					<table cellspacing="5">
+						<tr>
+							<td>ADULT: (12+ YRS)</td>
+							<td>CHILD: (2-11 YRS)</td>
+							<td>INFANT: (0-2 YRS)</td>
+							<td>CLASS:</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="button" value="-" id="adultminusbtn">
+								<input type="textbox" value="1" id="adulttextbox">
+								<input type="button" value="+" id="adultplusbtn">
+							</td>
+							<td>
+								<input type="button" value="-" id="childminusbtn">
+								<input type="textbox" value="0" id="childtextbox">
+								<input type="button" value="+" id="childplusbtn">
+							</td>
+							<td>
+								<input type="button" value="-" id="infantminusbtn">
+								<input type="textbox" value="0" id="infanttextbox">
+								<input type="button" value="+" id="infantplusbtn">
+							</td>
+							<td>
+								<select>
+									<option>Economy</option>
+									<option>Business</option>
+								</select>	
+							</td>	
+						</tr>	
+					</table>	
+				</section>
+			</section>	
+		</article>	
+	</body>
+</html>

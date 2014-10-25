@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<!--http://www.w3schools.com/tags/ref_av_dom.asp -->
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			function playAudio(){
+				document.getElementById("myaudio1").play();
+			}
+			function pauseAudio(){
+				document.getElementById("myaudio1").pause();
+			}
+			$().ready(function(){
+				$("#playbutton").on("click",playAudio);
+				$("#pausebutton").on("click",pauseAudio);
+			});
+		</script>
+	</head>
+	<body>
+		<audio src="TumHiHo.mp3" controls id="myaudio1"></audio><br/>
+		<input type="button" value="Play" id="playbutton">
+		<input type="button" value="Pause" id="pausebutton">
+	</body>	
+</html>

@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			$().ready(init);
+			var accentureDB;
+			function createDB(){
+				var request = indexedDB.open("Accenture",7);
+				request.onsuccess = function(){
+					accentureDB = request.result;
+					$("#message").html("Created DB successfully");
+
+				};
+				request.onerror = function(){
+					$("#message").html("Error creating DB");
+				};
+				request.onupgradeneeded = function(e){
+					accentureDB = e.target.result;
+					accentureDB.createObjectStore("PeopleStore",{keyPath:"name"});
+					accentureDB.createObjectStore("BookStore");
+				}
+
+			}
+
+			function addPerson(){
+				var person = {
+					name : $("#name").val(),
+					age : $("#age").val()
+				};
+				var txn = accentureDB.transaction("PeopleStore","readwrite");
+				var peopleStore = txn.objectStore("PeopleStore");
+
+				txn.oncomplete = function(){
+					$("#message").html("Person added successfully");
+				}
+				txn.onerror = function(){
+					$("#message").html("Error adding person");
+				}
+				peopleStore.add(person);
+			}
+			function readPersons(){
+				var txn = accentureDB.transaction("PeopleStore","readonly");
+				var peopleStore = txn.objectStore("PeopleStore");
+				var cursor = peopleStore.openCursor();
+				var ul = "<ul>";
+				cursor.onsuccess = function(e){
+					var records = e.target.result;
+					if(records){
+						ul += "<li>";
+						ul += records.value["name"] + ", " + records.value["age"];
+						ul += "</li>";
+						records.continue();
+					}
+					else{
+						ul += "</ul>";
+						$("#results").html(ul);
+
+					}
+				}
+			}
+			function init(){
+				createDB();
+				$("#addbutton").on("click",addPerson);
+				$("#readbutton").on("click",readPersons);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="Name"><br/>
+		<input type="text" id="age" placeholder="Age"><br/>
+		<input type="button" value="Add" id="addbutton">
+		<input type="button" value="Read" id="readbutton">
+		<h2 id="message"></h2>
+		<section id="results"></section>
+	</body>
+</html>

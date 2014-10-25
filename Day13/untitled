@@ -1,0 +1,5 @@
+<html  ng-app="SweatModule">
+	<head>
+		<script src="angular.min.js"></script>
+		<script>
+		</script>

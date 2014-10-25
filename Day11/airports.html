@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery-ui-1.11.1.custom/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.11.1.custom/jquery-ui.theme.min.css">
+
+		<script>
+
+			var GLOBAL = {
+				airports : [],
+				airportsDB : null,
+				justCreatedAirportsDB : false
+			};
+			function populateAirportsFromStore(){
+				var txn = GLOBAL.airportsDB.transaction("CityStore","readonly");
+				var cityStore = txn.objectStore("CityStore");
+				var cursor = cityStore.openCursor();
+				cursor.onsuccess = function(e){
+					var records = e.target.result;
+					if(records){
+						GLOBAL.airports.push(records.value);
+						records.continue();
+					}
+					else{
+						console.log(GLOBAL.airports);
+						displayAirports();
+					}
+				}
+			}
+
+			function createAirportsDB(){
+				var request = indexedDB.open("Spicejet",2);
+				request.onsuccess = function(){
+					GLOBAL.airportsDB = request.result;
+					if(!GLOBAL.justCreatedAirportsDB)
+						populateAirportsFromStore();
+					else{
+						populateAirportsFromServer();
+					}
+				};
+				request.onerror = function(){
+					console.log("Error creating airportsDB");
+				};
+				request.onupgradeneeded = function(e){
+					GLOBAL.airportsDB = e.target.result;
+					GLOBAL.airportsDB.createObjectStore("CityStore",{keyPath:"code"});
+					GLOBAL.justCreatedAirportsDB = true;
+				}
+			}
+
+			function addCitiesToAirportsDB(){
+				var txn = GLOBAL.airportsDB.transaction("CityStore","readwrite");
+				var cityStore = txn.objectStore("CityStore");
+				txn.oncomplete = function(){
+					console.log("Added");
+				};
+				for(var i=0;i<GLOBAL.airports.length;i++){
+					cityStore.add(GLOBAL.airports[i]);
+				}
+			}
+
+			function populateAirportsFromServer(){
+				$.ajax({
+					url : "airports.json",
+					dataType : "json",
+					success : function(response){
+						GLOBAL.airports = response.airports;
+						displayAirports();
+						addCitiesToAirportsDB();						
+					}
+				});
+			}
+			function displayAirports(){
+				var arr = [];
+				for(var i=0;i<GLOBAL.airports.length;i++){
+					var item = GLOBAL.airports[i].city + " (" + GLOBAL.airports[i].code + ")";
+					arr.push(item);
+				}
+				$("#fromtextbox").autocomplete({
+					source : arr
+				});
+			}
+
+			function init(){
+				createAirportsDB();
+			}
+			$().ready(init);
+
+		</script>
+	</head>
+	<body>
+		From <input type="text" id="fromtextbox">
+	</body>
+</html>		
