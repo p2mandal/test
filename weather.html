@@ -1,0 +1,138 @@
+<html>
+<head>
+	<title>Weather App</title>
+	<link rel="stylesheet" type="text/css" href="weather.css">
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="weather.js"></script>
+	<script src="Ajax.js"></script>
+		<script>
+			
+			$().ready(init);
+			var countriesDB;
+			function createDB(){
+				var request = indexedDB.open("Countries",7);
+				request.onsuccess = function(){
+					countriesDB = request.result;
+					$("#message").html("Created Countries DB successfully");
+
+				};
+				request.onerror = function(){
+					$("#message").html("Error creating Countries DB");
+				};
+				request.onupgradeneeded = function(e){
+					countriesDB = e.target.result;
+					countriesDB.createObjectStore("Countrycities",{keyPath:"name"});
+					
+				}
+
+			}
+
+			function check(){
+			var sec1 = document.getElementById("sec1");
+			if(navigator.onLine)
+				sec1.style.backgroundColor = "green";
+			else
+				sec1.style.backgroundColor = "red";
+		}
+
+			function addCountry(){
+				var country = {
+					name : $("#name").val(),
+					city1 : $("#city1").val(),
+					city2 : $("#city2").val(),
+					city3 : $("#city3").val()
+				};
+				
+				var txn = countriesDB.transaction("Countrycities","readwrite");
+				var Countrycities = txn.objectStore("Countrycities");
+
+				txn.oncomplete = function(){
+					$("#message").html("Country added successfully");
+				}
+				txn.onerror = function(){
+					$("#message").html("Error adding country");
+				}
+				Countrycities.add(country);
+			}
+
+			function readCountry(){
+				var txn = countriesDB.transaction("Countrycities","readonly");
+				var Countrycities = txn.objectStore("Countrycities");
+				var cursor = Countrycities.openCursor();
+				var ul = "<ul>";
+				cursor.onsuccess = function(e){
+					var records = e.target.result;
+					if(records){
+						ul += "<li>";
+						ul += records.value["name"] + ", " + records.value["city1"] + ", " + records.value["city2"] + ", " + records.value["city3"];
+						ul += "</li>";
+						records.continue();
+					}
+					else{
+						ul += "</ul>";
+						$("#results").html(ul);
+
+					}
+				}
+			}
+
+			function init(){
+				createDB();
+				$("#addbutton").on("click",addCountry);
+				$("#readbutton").on("click",readCountry);
+
+				$("#buttoncheck").click(function check(){
+					if(navigator.onLine)
+						alert("You are online!");
+
+						//$("#sec1").text("Bingo! You are Online!");
+					else
+						alert("You are not connected!");
+						//$("#sec1").text("Alas! You are Offline!");
+				});
+			}
+
+		</script>
+
+
+
+</head>
+
+<body>
+		<p>To check your internet connectivity click the button.</p>
+		<input type= "button" value= "Check Connectivity" id= "buttoncheck" onclick= "check()">
+		<section id= "sec1"></section>
+		</br></br></br></br>
+		<section id= "sec2">
+		<center>
+		<h2>Enter the name of the Countries and cities</h2>
+
+		<input type="text" id="name" placeholder="Country"><br/>
+		<input type="text" id="city1" placeholder="City 1"><br/>
+		<input type="text" id="city2" placeholder="City 2"><br/>
+		<input type="text" id="city3" placeholder="City 3"><br/>
+		<input type="button" value="Add" id="addbutton">
+		<input type="button" value="Read" id="readbutton">
+		<h2 id="message"></h2>
+		<section id="results"></section>
+		<section id= "sec1"></section>
+
+		<table id="weatherreport" border="1">
+			<thead>
+				<tr>
+					<th>Country</th>
+					<th>City</th>
+					<th>Min</th>
+					<th>Max</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			
+			<tbody id="weatherreporttbody">
+			</tbody>	
+		</table>	
+	</center>
+		</section>
+</body>
+
+</html>

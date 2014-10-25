@@ -1,0 +1,35 @@
+<html ng-app="weather">
+<head>
+	<script src="angular.min.js"></script>
+	<script src="weather.js"></script>
+	<link rel="stylesheet" type="text/css" href="weather.css">
+</head>
+<body ng-controller="reports">
+	<header>Weather</header>
+	<center>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Country</th>
+					<th>City</th>
+					<th>Min</th>
+					<th>Max</th>
+					<th>Time</th>
+				</tr>
+				<tr>
+					<th>{{country}}</th>
+					<th>{{city}}</th>
+					<th>{{min}}</th>
+					<th>{{max}}</th>
+					<th>{{tim}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="key in list">
+					<td>{{key.title}}</td>					
+				</tr>
+			</tbody>	
+		</table>
+		</center>
+</body>
+</html>
