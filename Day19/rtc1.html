@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script>
+
+			function init(){
+				var canvas = document.querySelector('canvas');
+  				var ctx = canvas.getContext('2d');
+				if(navigator.webkitGetUserMedia){
+					alert("Working");
+					var errorCallback = function(e) {
+    						console.log('Reeeejected!', e);
+  					};
+					navigator.webkitGetUserMedia({video: true, audio: true}, 
+						function(localMediaStream) {
+    						var video = document.querySelector('video');
+    						video.src = window.URL.createObjectURL(localMediaStream);
+   							video.onloadedmetadata = function(e) {
+							      // Ready to go. Do some stuff.
+    						};
+    						function snapshot() {
+							    if (localMediaStream) {
+							    	console.log("Capture");
+      								ctx.drawImage(video, 0, 0);
+      								document.querySelector('img').src = canvas.toDataURL('image/webp');
+    							}
+  							}
+  							video.addEventListener('click', snapshot, false);
+ 					 }, errorCallback);
+				}
+				else{
+					alert("Not working");
+				}
+			}
+
+		</script>
+	</head>	
+	<body onload="init();">
+		<video autoplay height="400px" width="500px"></video>
+		<canvas style="display:none;"></canvas>
+		<img src="" height="300" width="300">
+	</body>
+</html>

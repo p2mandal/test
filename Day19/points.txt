@@ -1,0 +1,218 @@
+You can mail your questions to prabhu@durasoftindia.com anytime before 10 PM.
+
+jQuery
+	Pros
+		simple, easy to use
+		lightweight syntax
+		DOM manipulations are made easy
+		good support for plugins
+	cons
+		Modularity takes a beating
+		Maintainence	
+	design
+		API, simple, DOM operations
+		$ syntax/ a function
+		chaining of methods
+		$("#id").css("color","red").html("HTML").on("click",function(){})  
+		$("selector").on("eventname",function(){
+
+		});
+		$(this) ==> used to access each element in a collection
+		$("input:button").on("click",function(){
+			var btn = $(this);
+		})
+		$.ajax({JSON object});//XMLHttpRequest
+		$().ready(function(){});//window.onload
+	Plugin
+		$("section").date();
+		$.fn.date = function(){}
+	UI
+		datepicker,autocomplete,menu,button,dialog,accordion
+
+Angular JS
+	MVC style framework
+	separates our code into models, views and controllers
+	maintainence is easy
+	testing, reusability not an issue
+
+	design
+		Dependency Injection
+
+	modules
+		high level segregation
+		application is composed of modules
+		angular.module("ModuleName",[])//new module, empty square braces is the key
+		You use a module using ng-app directive
+	controllers
+		controller is the place where you write your event handling, navigation logic
+		module.controller("controllername",function(set of services){
+
+		});
+		create an instance of controller by using ng-controller directive
+		share information between controllers using $rootScope;parent controller
+		<body ng-controller="parent">
+			<section ng-controller="boy"></section>
+			<section ng-controller="girl"></section>
+		</body>
+	services
+		$http, $scope, $sce(Day13/generateHTML.html), $rootScope,$window
+		can create your own service
+		service is also a way by which you can share data between controllers
+		$http used for AJAX
+			$http({json})
+			$http.jsonp()//?callback=JSON_CALLBACK 
+	directives
+		ng-app,ng-click,ng-repeat 
+		custom directives also
+	views
+		ng-include, ng-view
+		ng-model (data of the UI element is bound to a variable)
+
+		<input type="text" ng-model="firstname">
+		The data of the textbox is bound to a variable "firstname"
+		Any changes to the value of the textbox firstname variable is modified
+		Any changes to the firstname variable, the textbox reflects it
+
+	$scope.$apply()
+		View(ie.,html page) will get refreshed when the data(model) changes
+		But when you modify the data outside the angularjs context, you have to explicitly call $scope.$apply() to update the view
+		
+		<input type="button" ng-click="f()" value="Inside Context">
+		<input type="button" onclick="g()" value="Outside Context">
+		controller(
+			$scope.f(){				
+
+			}
+			function g(){
+				$scope.$apply();
+			}
+
+		)
+
+
+CSS3
+	2D
+		2d transformations
+		transform,rotate, skew, translate, scale
+		box-shadow
+	3D
+		keyframes
+		animations
+
+	browser engines
+		webkit (safari,chrome)
+		moz(firefox)
+		ms(IE)
+
+	General syntax
+		-engine-property : value
+		-webkit-transform : rotate(20 deg)	scale(1.5)
+		-moz-transform : rotate(20 deg)	scale(1.5)
+
+	Programmatically you can set the style using jQuery or Ang or plain JS
+		document.getElementById("elemid").style.webkitTransform = "scale(1.5)"	
+
+		$("#elemid").css("-webkit-transform","scale 1.5");
+
+		ng-style="style1"
+		$scope.style1 = {"-webkit-transform":"scale(1.5)"};
+HTML 5
+	latest version of HTML
+	used extensively in mobile web applications
+	Used to build single page applications(no refresh;just portions of the page change)	
+DnD
+	Drag and Drop API
+	set draggable="true" on any element to make it draggable
+	handle all the dnd events like dragstart, dragover, drop etc.,
+	DnD is just an illusion. You have to remove the draggable items and create them in the drop area.
+forms
+	input forms (email,url,date,age,number)
+	can use required attribute on the elements to enable validation
+	contenteditable attribute is used to enable inline editing
+
+data storage
+	available in the browser's memory till the user clears the data
+	usually upto 5MB per application per browser
+
+localstorage
+	key/value pair
+	only strings can be stored
+	if the application exceeds the limit an error is thrown (quotaexceeded error)
+	json objects need to be stringified and stored
+
+sessionstorage
+	same as local storage
+	gets deleted when you close the browser
+IndexedDB
+	used to store JSON objects
+	asynchronous API
+	create object stores
+	transaction-based
+	not supported in iOS devices
+
+WebSQL
+	SQLite database
+	Not supported in firefox and IE
+	used to store hierarchical data
+	asynchronous API
+	transaction based
+	normal SQL queries
+
+Application Cache
+	offline applications
+	cache.manifest file is used to configure the items need to be cached
+	NETWORK section denotes files that need to be loaded from the network always
+	CACHE section lists all the individual files that need to be cached
+	FALLBACK section is used to specify fallback option incase the file is not available
+	when an item is cached it's always loaded from the cache only, even if the server is running
+
+Canvas
+	2d/3d drawing, painting
+	plain drawable surface
+	<canvas> element
+	get a context and start drawing rectangles, lines, ellipse
+	fill colors
+
+Media
+	<video>,<audio> elements
+	no plugins required
+	have properties/methods to start, pause, calculate currentTime 
+	has many events to keep track of the play position, loading etc
+
+GeoLocation
+	used to get the geographical coordinates of the machine that's accessing your page
+	navigator.getlocation.getCurrentPosition
+	User will be prompted to allow/deny permission
+
+WebRTC
+	RealTime communication
+	Used for video chat in the browser.
+	You can create a selfie easily using this approach.
+	webkitUserMedia/mozUserMedia/msUserMedia is used to invoke the webcam
+	you can stream the video in a <video> element and take a snapshot and draw it on a <canvas>
+	refer to Day19/rtc1.html
+
+History
+	back or forward button in a single page application
+	pushState and popState
+	Store data and retrieve data 
+
+CORS
+	Cross Origin Resource Sharing
+	If application (http://localhost:8080/AppName) has to send an AJAX request to another application, say (http://twitter.com), browser will not allow it
+	You have two options to solve this problem (CORS or JSONP)
+	In CORS enable twitter application to set a header Allow_Access_Control_Origin to http://localhost:8080/AppName
+
+	In JSONP pass a callback key along with AJAX request
+	for Angular JS we use callback=JSON_CALLBACK
+
+WebSockets
+	Like your facebook chat embedded in a facebook page
+	Used to create socket connections to the server from a browser
+	very limited browser support
+
+WebWorkers
+	JavaScript is single threaded.
+	A long running operation may block the UI thread(Remember the kill/unresponsive error in browser)
+	WebWorkers is used to create background threads in JS
+	Very limited browser support 

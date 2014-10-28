@@ -1,0 +1,34 @@
+<html ng-app="AddressBook">
+	<head>
+		<script src="angular.js"></script>
+		<script src="addressdb.js"></script>
+		<script>
+			angular.module("AddressBook",[]);
+			AddressDB.createDatabase("AddressBook","Lab",1.0);
+			AddressDB.executeQuery("create table if not exists contacts(id unique,firstname,lastname,mobile)",[]);
+		</script>
+		<script src="addressbook.js"></script>
+	</head>
+	<body ng-controller="Main">
+		<section ng-controller="AddContact" ng-style="addform">
+			<input type="text" placeholder="first name" ng-model="firstname"><br/>
+			<input type="text" placeholder="last name" ng-model="lastname"><br/>
+			<input type="text" placeholder="mobile" ng-model="mobile">
+			<br/>
+			<input type="button" value="Done" ng-click="addContact()">
+			<input type="button" value="Cancel" ng-click="cancelAddContact()">
+		</section>
+		<section ng-controller="Contacts" ng-style="list">
+			<table cellspacing="3" cellpadding="4">
+				<tr ng-repeat="contact in contactsCollection track by contact.mobile">
+					<td>
+						{{contact.firstname}} {{contact.lastname}}
+					</td>
+					<td>
+						<input type="button" value="Edit" ng-click="editContact(contact)">
+					</td> 	
+				</tr>	
+			</table>	
+		</section>	
+	</body>
+</html>

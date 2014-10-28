@@ -1,0 +1,55 @@
+<html ng-app="Accenture">
+	<head>
+		<script src="angular.min.js"></script>
+		<script src="angular-sanitize.min.js"></script>
+		<script>
+			angular.module("Accenture",[]).
+				service("SampleService",function(){
+					console.log("Hello service");
+					return {
+						print : function(){
+							console.log("Print called");
+						}
+					};
+				}).
+				controller("sample",function($sce,$scope,$http,SampleService){
+					console.log($scope);
+					$scope.items = [{name:"a"},{name:"b"},{name:"c"}];
+					$scope.name = "";
+					$scope.message = "";
+					$scope.click = function(){
+						SampleService.print();
+						var apikey = "edpyxhran22urr7g7m7pdek8";
+var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
+
+// construct the uri with our apikey
+var moviesSearchUrl = baseUrl + '/movies.json?callback=JSON_CALLBACK&apikey=' + apikey + "&q=Titanic";
+var query = "Titanic";
+						/*$http({url:moviesSearchUrl}).
+							success(function(data){
+								console.log(data.total);
+							});*/
+				$http.jsonp(moviesSearchUrl).
+					success(function(data){
+						console.log(data.total);
+					})
+						$scope.message = "Hello " + $scope.name;
+					
+					//var element = $compile(angular.element('<input type="checkbox">'))($scope);
+					$scope.msg=$sce.trustAsHtml("<input type='checkbox'>");
+					}
+				});
+		</script>
+	</head>
+	<body ng-controller="sample">
+		<section ng-bind-html="msg"></section>
+		<ul>
+			<li ng-repeat="item in items">
+				{{item.name}}
+			</li>	
+		</ul>	
+		<input type="text" ng-model="name" id="name" placeholder="name"><br/>
+		<input type="button" value="Click" ng-click="click()">
+		<h1 id="message">{{message}}</h1>
+	</body>	
+</html>

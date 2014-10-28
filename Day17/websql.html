@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script>
+			//txn.executeSql(query,[array of values],success,error);
+			var db = openDatabase("Accenture",1.0,"Useless DB",757657455);
+			db.transaction(createMovieTable);
+			db.transaction(insertMovieRecord);//IMPLEMENT this
+			db.transaction(displayMovies);
+
+			function displayMovies(txn){
+				//console.log(txn.executeSql);
+				var sql = "select * from movies";
+				txn.executeSql(sql,
+					        [],
+					        function(tx,result){
+					        	var count = result.rows.length;
+					        	for(var i=0;i<count;i++){
+					        		var row = result.rows.item(i);
+					        		console.log(row.id + ", " + row.name);
+					        	}
+					        });
+					        
+			}
+
+			function insertMovieRecord(txn){
+				var sql = "insert into movies values(?,?,?)";
+				txn.executeSql(sql,
+							[101,"Bang Bang","Hindi"],
+							function(tx){
+								console.log("Inserted successfully");
+							},
+							function(tx,err){
+								console.log("Error inserting movie");
+								console.log(err);
+							});
+			}
+			function createMovieTable(txn){
+				var sql = "create table if not exists movies(id unique,name,language)";
+				txn.executeSql(sql,
+						[],
+						function(tx){
+							console.log("Created Movies successfully");
+						},
+						function(tx,err){
+							console.log(err);
+						});
+			}
+		</script>
+	</head>
+	<body></body>
+</html>

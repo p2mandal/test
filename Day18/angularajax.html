@@ -1,0 +1,39 @@
+<html ng-app="AJAX">
+	<head>
+		<script src="angular.min.js"></script>
+		<script>
+			angular.module("AJAX",[]).
+				controller("ServerInteraction",function($scope,$http){
+
+					$scope.click = function(){
+						var url = "http://127.0.0.1:9090/Day14/angserver.jsp?callback=JSON_CALLBACK&name=" + $scope.name;
+
+						$http.jsonp(url)
+							 .success(function(data){
+								$scope.message = data.info; 	
+							 });
+
+/*
+						var JSON_CALLBACK = function(data){
+							$scope.message = data.info;
+						}
+*/
+						/*$http({
+							url:url,
+							params:{
+								name:$scope.name
+							}
+						})
+						.success(function(response){
+							 $scope.message = response.info;
+						});*/
+					}
+				});
+		</script>
+	</head>
+	<body ng-controller="ServerInteraction">
+		<input type="text" placeholder="name" ng-model="name">
+		<input type="button" value="Click" ng-click="click()">
+		<h3>{{message}}</h3>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			window.onload = function(){
+				var logo = document.getElementById("logo");
+				var logoContext = logo.getContext("2d");
+				logoContext.fillStyle = "black";
+				logoContext.fillRect(10,10,200,150);
+
+				logoContext.strokeStyle = "white";
+				logoContext.fillStyle = "white";
+				logoContext.lineWidth = 3;
+
+				//I block
+				logoContext.beginPath();
+				logoContext.moveTo(60,100);
+
+				logoContext.lineTo(80,100);
+				logoContext.lineTo(70,85);
+				logoContext.lineTo(55,96);
+				logoContext.lineTo(60,100);
+				logoContext.fill();
+				logoContext.stroke();
+				logoContext.closePath();
+
+				//II block
+				logoContext.beginPath();
+				logoContext.moveTo(95,100);
+
+				logoContext.lineTo(115,100);
+				logoContext.lineTo(85,60);
+				logoContext.lineTo(73,71);
+				logoContext.lineTo(95,100);
+				logoContext.fill();
+				logoContext.stroke();
+				logoContext.closePath();
+
+				///III block
+				logoContext.beginPath();
+				logoContext.moveTo(130,100);
+
+				logoContext.lineTo(150,100);
+				logoContext.lineTo(105,30);
+				logoContext.lineTo(90,43);
+				logoContext.lineTo(130,100);
+				logoContext.fill();
+				logoContext.stroke();
+				logoContext.closePath();
+
+
+			};
+		</script>
+	</head>
+	<body>
+		<canvas id="logo"></canvas>
+	</body>
+</html>

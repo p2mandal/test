@@ -1,0 +1,43 @@
+<html ng-app="Sample">
+	<head>
+		<style>
+			.max {
+				color : green;
+			}
+			.min {
+				color : red;
+			}
+		</style>
+		<script src="angular.js"></script>
+		<script>
+			angular.module("Sample",[]).
+					controller("StyleController",function($scope){
+						$scope.values = [
+							{"symbol":"Yahoo","change":+2.34},
+							{"symbol":"INFY","change":-2.34}
+						];
+						$scope.number = 0;
+						$scope.number2 = 100;
+						$scope.cls2 = "min";
+						$scope.cls1 = "max";
+					});
+
+		</script>
+	</head>	
+	<body ng-controller="StyleController">
+		<table>
+			<tr ng-repeat="v in values">
+				<td>{{v.symbol}}</td>
+
+				<td ng-if="v.change > number"><span ng-class="cls1">{{v.change}}</span></td>
+				<td ng-if="v.change < number"><span ng-class="cls2">{{v.change}}</span></td>
+			</tr>	
+		</table>	
+		<section ng-if="number > number2">
+			<div ng-class="cls1">HELLO</div>
+		</section>
+		<section ng-if="number < 100">
+			<div ng-class="cls2">HELLO</div>
+		</section>	
+	</body>
+</html>
