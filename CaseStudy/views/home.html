@@ -1,0 +1,78 @@
+<section ng-show="homeShow" class="home" ng-controller="SearchCtrl">
+    <section class="home_page_header">
+        <image src="img/viewlogo.jpg" width="10%" height="40%"></image>
+        <!--<p>WELCOME:<input type="button" value="sign out"></input></p>-->
+
+        <section class="searchClass">
+            <input type="text" style="background-color:#B8B8B8;color:white; " placeholder="SEARCH A MOVIE" ng-model="movieName"></input>
+
+            <input type="button" ng-click="search()" class="search"></input>
+        </section>
+    </section>
+    <section class="searchtab">
+        <section ng-show="showResults">
+            <table>
+                <tbody>
+                    <tr ng-repeat="movie in resultArray">
+
+                        <td>
+
+                            <img ng-src="{{movie.posters.thumbnail}}" alt="thumbnail" class="titleClass" ng-click="showDetails(movie)">
+                        </td>
+                        <td>
+                            <span ng-click="showDetails(movie)" class="titleClass">{{movie.title}}</span>
+                            <br/>
+                            <span>Cast:
+                                <span ng-repeat="cast in movie.abridged_cast">{{cast.name}},</span>
+                            </span>
+                            <br/>
+                            <span>Release year:{{movie.year}}</span>
+                            <br/>
+                            <span>Running time: {{movie.runtime}}</span>
+                            <br/>
+                            <span>Rating:{{movie.ratings.audience_score}}/100</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div ng-controller="ResultCtrl" ng-show="showVideo">
+            <header>
+                <h2>{{movie.title}}</h2>
+            </header>
+            <video>
+            </video>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <video controls id="vid">
+                            	<source src="{{movie.video}}" type="video/mp4"></source>
+                            </video>
+                        </td>
+                        <td>
+                            <img ng-src="{{movie.posters.profile}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>{{movie.title}}</span>
+                            <br/>
+                            <span>Cast:
+                                <span ng-repeat="cast in movie.abridged_cast">{{cast.name}},</span>
+                            </span>
+                            <br/>
+                            <span>Release year:{{movie.year}}</span>
+                            <br/>
+                            <span>Running time:{{movie.runtime}}</span>
+                            <br/>
+                            <span>Rating:{{movie.ratings.audience_score}}/100</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</section>

@@ -1,0 +1,24 @@
+<html ng-app="VideoMe">
+<head>
+	<title>VideoMe</title>
+	<style type="text/css">
+		.back{
+			background: url(img/collage.jpg);
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/CSSvideome.css"></link>
+	<link rel="shortcut icon" href="img/videome.ico">
+	<script type="text/javascript" src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="controllers/LoginCtrl.js"></script>
+	<script type="text/javascript" src="controllers/SearchCtrl.js"></script>
+	<script type="text/javascript" src="controllers/ResultCtrl.js"></script>
+
+</head>
+<body class="back">
+	<section ng-include="'views/login.html'"></section>
+	<section ng-include="'views/home.html'"></section>
+	<!--<section ng-include="'views/result.html'"></section>-->
+</body>
+</html>

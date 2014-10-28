@@ -1,0 +1,70 @@
+
+#div1{
+	margin-left: 35%;
+	margin-top: 15%;
+	border-style: hidden;
+	background:-webkit-linear-gradient(top, #2672ae  0%,#1e4f7e 100%);
+	margin-right: 30%;
+	padding: 3%;
+	opacity: 0.95;
+	box-shadow: -webkit-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				-moz-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+	border-radius: 3%;
+	border-collapse: collapse;
+	
+}
+
+
+#uname{
+	width: 100%;
+	padding-bottom: 2%;
+	border-radius: 2%;
+}
+
+#pwd{
+	width: 100%;
+	padding-bottom: 2%;
+	border-radius: 2%;
+}
+
+#forgotpwd {
+	background-image: url("questionmark.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding-bottom: 2%;
+	padding-right: 4%;
+
+}
+#forgotpwd:hover{
+	
+}
+
+#submit{
+
+	width: 100%;
+	padding: 1%;
+	background:-webkit-linear-gradient(top, #FFEB99  0%, #FFCC00 100%);
+	font-size: 100%;
+	font-weight: bold;
+	color:#003D3D;
+
+
+
+}
+
+h4{
+	margin-left: 31%;
+	color: #D1D1E0;
+	font-size: 15;
+}
+
+.image1{
+	margin-left: 18%;
+	box-shadow: -webkit-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				-moz-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				margin-right: 19%;
+
+
+}

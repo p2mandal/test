@@ -1,0 +1,29 @@
+<div class="searchtab" ng-controller="ResultCtrl" ng-show="showVideo"> 
+	<header>
+		<h2>{{movie.title}}</h2>
+	</header>
+	<video>
+	</video>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<video width="400" height="50%">
+					</video>
+				</td>
+				<td>
+					<img src="">
+				</td>
+			</tr>
+			<tr>
+				<td>
+						<span>{{movie.title}}</span><br/>
+						<span>Cast:<span ng-repeat="cast in movie.abridged_cast">asdlsadasdas</span></span><br/>
+						<span>Release year:</span><br/>
+						<span>Running time: </span><br/>
+						<span>Rating:/100</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

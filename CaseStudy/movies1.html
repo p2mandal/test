@@ -1,0 +1,126 @@
+<html ng-app= "MovieModule">
+<head>
+	<title>Movies Database</title>
+	<script src="angular.min.js"></script>
+	<script src="jquery-2.1.1.min.js"></script>
+    <style>
+        .style1{
+                margin-top: 3%;
+                margin-left: 30%;
+                border-style: solid;
+                margin-right: 30%;
+                padding-left: 2%;
+                padding-top: 2%;
+                padding-bottom: 2%;
+                background-color: 66CCFF;
+        }
+
+        .style2{
+            
+            margin-top: 2%;
+            margin-left: 30%;
+            border-style: solid;
+            margin-right: 30%;
+            padding-left: 2%;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            background-color: #E8E8E8 ;
+        }
+        .name{
+            width: 100%;
+        }
+        body{
+            background-color: brown;
+        }
+        .scroll {
+            
+            height:30%;
+            overflow-x: auto;
+            overflow-y: auto;
+            
+           }
+        
+
+        
+
+    </style>
+	<script>
+	     angular.module ("MovieModule", [])
+            .controller("MyMovies", function($scope, $http) {
+        	$scope.moviename= "";
+        	$scope.reply= "";
+            $scope.reply= "";
+            $scope.movielist=[];
+            $scope.showHide = false;
+                       
+
+            $scope.click = function(){
+
+                $scope.showHide = true;
+
+                $http.get( "http://localhost:8080/day14/movies/" + $scope.moviename + ".json" ).success(function(response){
+                                    $scope.reply=response;
+                                    $scope.reply=response;                             
+                                    
+                                    console.log("The movie you searched is " + $scope.reply.movies[0].title);
+                                    console.log("The ID of the movie is " + $scope.reply.movies[0].id);
+                                    
+                                    for(i=0; i<$scope.reply.movies.length;i++){
+                                     $scope.movielist.push($scope.reply.movies[i].title);
+                                     console.log($scope.movielist[i]);
+
+                                    }
+                                        console.log($scope.movielist);
+                                    });
+                                }
+                            
+                               
+                            $scope.logOut = function(){
+                                
+                                $scope.showHide = false;
+                            }
+                            
+                        });
+                
+
+                
+
+	</script>
+
+</head>
+
+<body ng-controller= "MyMovies">
+    <section ng-class= "'style1'">
+        
+        
+        <h1>Movies Database</h1>
+	    <input  type="text" ng-model="moviename" placeholder="Enter Movie Name"><br/></br>
+        <input type="button" ng-model="click" value="Search" ng-click="click()">
+        <input type="button" ng-model = "click" value= "Log out" ng-click="logOut()">
+
+    </section>
+
+ </br></br>
+   
+    
+    <section ng-class= "'style2'" ng-show="showHide">
+    <div class = "scroll">
+    <h3>The list is: </h3></br>
+    <p ng-repeat= "key in movielist" >{{key}} </p>
+    
+    
+    <table ng-model="mytable" border="0" cellspacing="1" cellpadding="2">
+        <tr ng-repeat= "key in reply.movies">
+            <td><image ng-src= "{{key.posters.thumbnail}}"></image></td>
+            <td>{{key.title}}</td>
+        </tr>
+
+    </table>
+    </div>
+    
+    </section>
+    
+
+</body>
+
+</html>

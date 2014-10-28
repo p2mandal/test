@@ -1,0 +1,1 @@
+videoApp=angular.module("VideoMe",[]);
