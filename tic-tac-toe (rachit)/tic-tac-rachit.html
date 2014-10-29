@@ -1,0 +1,205 @@
+<html>
+<head>
+
+<style>
+
+#box{
+
+padding:2px;
+border-style:inset;
+box-shadow:5px 5px gray;
+border:2px solid gray;
+width:100px;
+height:100px;
+margin-left:40%;
+margin-top:10%;
+}
+
+input{
+width:30px;
+height:33px;
+background-color:cyan;
+color:white;
+}
+
+</style>
+
+
+
+<script>
+
+function calc(arg){
+if(document.getElementById(arg).value==" "){
+
+document.getElementById(arg).value="X";
+winner();
+random1();
+}
+
+}
+
+function random1(){
+
+var ran = Math.round(Math.random()*10);
+
+if(ran==10){
+ran=ran-1;}
+else if(ran==0){
+ran=ran+1;
+}
+
+var bttn="btn"+ran;
+console.log(bttn);
+
+if(document.getElementById(bttn).value==" "){
+document.getElementById(bttn).value="O";
+winner();
+}
+
+else if(document.getElementById(bttn).value!=" "){
+winner();
+random1();
+}
+}
+
+function winner(){
+if(
+document.getElementById("btn1").value=="X"&&
+document.getElementById("btn2").value=="X"&&
+document.getElementById("btn3").value=="X"||
+
+document.getElementById("btn4").value=="X"&&
+document.getElementById("btn5").value=="X"&&
+document.getElementById("btn6").value=="X"||
+
+document.getElementById("btn7").value=="X"&&
+document.getElementById("btn8").value=="X"&&
+document.getElementById("btn9").value=="X"||
+
+document.getElementById("btn1").value=="X"&&
+document.getElementById("btn5").value=="X"&&
+document.getElementById("btn9").value=="X"||
+
+document.getElementById("btn3").value=="X"&&
+document.getElementById("btn5").value=="X"&&
+document.getElementById("btn7").value=="X"||
+
+document.getElementById("btn1").value=="X"&&
+document.getElementById("btn4").value=="X"&&
+document.getElementById("btn7").value=="X"||
+
+document.getElementById("btn2").value=="X"&&
+document.getElementById("btn5").value=="X"&&
+document.getElementById("btn8").value=="X"||
+
+document.getElementById("btn3").value=="X"&&
+document.getElementById("btn6").value=="X"&&
+document.getElementById("btn9").value=="X"
+
+
+
+
+
+){
+alert("winner is X");
+reset();
+}
+
+else if(
+document.getElementById("btn1").value=="O"&&
+document.getElementById("btn2").value=="O"&&
+document.getElementById("btn3").value=="O"||
+
+document.getElementById("btn4").value=="O"&&
+document.getElementById("btn5").value=="O"&&
+document.getElementById("btn6").value=="O"||
+
+document.getElementById("btn7").value=="O"&&
+document.getElementById("btn8").value=="O"&&
+document.getElementById("btn9").value=="O"||
+
+document.getElementById("btn1").value=="O"&&
+document.getElementById("btn5").value=="O"&&
+document.getElementById("btn9").value=="O"||
+
+document.getElementById("btn3").value=="O"&&
+document.getElementById("btn5").value=="O"&&
+document.getElementById("btn7").value=="O"||
+
+document.getElementById("btn1").value=="O"&&
+document.getElementById("btn4").value=="O"&&
+document.getElementById("btn7").value=="O"||
+
+document.getElementById("btn2").value=="O"&&
+document.getElementById("btn5").value=="O"&&
+document.getElementById("btn8").value=="O"||
+
+document.getElementById("btn3").value=="O"&&
+document.getElementById("btn6").value=="O"&&
+document.getElementById("btn9").value=="O"
+){
+alert("winner is O");
+reset();
+}
+else if(
+document.getElementById("btn1").value!=" "&&
+document.getElementById("btn2").value!=" "&&
+document.getElementById("btn3").value!=" "&&
+document.getElementById("btn4").value!=" "&&
+document.getElementById("btn5").value!=" "&&
+document.getElementById("btn6").value!=" "&&
+document.getElementById("btn7").value!=" "&&
+document.getElementById("btn8").value!=" "&&
+document.getElementById("btn9").value!=" "
+
+){
+alert("Aww! Match Draw");
+reset();
+
+}
+}
+
+
+
+function reset(){
+document.getElementById("btn1").value=" ";
+document.getElementById("btn2").value=" ";
+document.getElementById("btn3").value=" ";
+document.getElementById("btn4").value=" ";
+document.getElementById("btn5").value=" ";
+document.getElementById("btn6").value=" ";
+document.getElementById("btn7").value=" ";
+document.getElementById("btn8").value=" ";
+document.getElementById("btn9").value=" ";
+newgame();
+}
+function newgame(){
+alert("new game starts now ");
+}
+</script>
+
+<body>
+
+<div id="box">
+<div id="buttons">
+
+<input type="button" value=" " id="btn1" onclick="calc('btn1')">
+<input type="button" value=" " id="btn2" onclick="calc('btn2')">
+<input type="button" value=" " id="btn3" onclick="calc('btn3')"><br>
+
+<input type="button" value=" " id="btn4" onclick="calc('btn4')">
+<input type="button" value=" " id="btn5" onclick="calc('btn5')">
+<input type="button" value=" " id="btn6" onclick="calc('btn6')"><br>
+
+<input type="button" value=" " id="btn7" onclick="calc('btn7')">
+<input type="button" value=" " id="btn8" onclick="calc('btn8')">
+<input type="button" value=" " id="btn9" onclick="calc('btn9')">
+</div>
+</div>
+
+<div>
+<input type="button" value="reset" onclick="reset()" id="reset1" style="width:45px">
+</div>
+</body>
+</head>
+</html>
