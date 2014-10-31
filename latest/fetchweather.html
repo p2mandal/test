@@ -1,0 +1,179 @@
+<html ng-app="checkweather">
+<title>Weather Update App</title>
+
+<head>
+	<script src="angular.min.js"></script>
+	<script src="jquery-2.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="weather.css">
+
+	<script>
+
+	$().ready(init);
+
+	var countries = ["UK","France","USA","India"];
+
+	var cityDB;
+	function createDB(){
+		var request = indexedDB.open("Countries",5);
+		request.onsuccess = function(){
+			cityDB = request.result;
+			console.log("DataBase created successfully");
+		};
+				
+		request.onupgradeneeded = function(e){
+			cityDB = e.target.result;
+			cityDB.createObjectStore("Countries",{keyPath:"name"});
+
+		}
+
+	}
+
+    function addCountry(){
+		var country = {
+			name : $("#name").val(),
+			city : $("#city1").val(),
+
+		};
+				
+		var txn = cityDB.transaction("Countries","readwrite");
+		var Countrycity = txn.objectStore("Countries");
+
+		txn.oncomplete = function(){
+			console.log("Countries added successfully");
+		}
+
+		txn.onerror = function(){
+			console.log("Error in creating countries");
+		}
+				Countrycity.add(country);
+			}
+
+	function readCountry(){
+		var txn = cityDB.transaction("Countries","readonly");
+		var Countrycity = txn.objectStore("Countries");
+		var cursor = Countrycity.openCursor();
+		var ul = "<ul>";
+			cursor.onsuccess = function(e){
+				var records = e.target.result;
+				if(records){
+					ul += "<ul>";
+					ul += records.value["name"] + ", " + records.value["city"] ;
+					ul += "</ul>";
+					records.continue();
+			}
+				else{
+					ul += "</ul>";
+					$("#results").html(ul);
+
+				}
+			}
+		}
+
+		
+    function init(){
+		createDB();
+		$("#addbutton").on("click",addCountry);
+		$("#readbutton").on("click",readCountry);
+
+		}
+
+        
+
+angular.module("checkweather",[])
+		.controller("weatherupdate",function($scope,$http,$window){
+			//console.log("Inside controller");
+			$scope.country = "";
+			$scope.city = "";
+			$scope.min = "";
+			$scope.max = "";
+			$scope.temp = "";
+			$scope.list = [];
+			
+			$window.setInterval(fetchWeather,500);
+
+		  $scope.check = function() {
+		  	if (navigator.onLine) {
+		  		alert('You are Connected to the Internet!');
+				} 
+			else {
+		  		alert('Sorry You are Offline!');
+				}
+		  }
+		  
+			
+			function fetchWeather(){
+				$scope.list.length = 0;
+				for(var i=0;i<countries.length;i++){
+					var url = "http://localhost:8080/latest/"+countries[i]+".json";
+					$http.get(url)
+							.success(function(data){
+					$scope.list.push(data);
+
+				});
+				}
+			
+			}	
+		});
+
+
+
+	</script>
+
+</head>
+
+
+<body>
+<body ng-controller="weatherupdate">
+	
+	<p>To check your internet connectivity click the button.</p>
+	<input type= "button" value= "Check Connectivity" id= "buttoncheck" ng-click= "check()">
+	<section id= "sec1"></section>
+
+	<section id= "sec2">
+	<center>
+		
+		<h2>Enter Countries and City for IndexedDB</h2>
+		<div id= "ctrl">
+			<input type="text" id="name" placeholder="Enter the Country" title= "Country"><br/>
+			<input type="text" id="city1" placeholder="Enter the City" title= "City"><br/>
+		
+			<input type="button" value="Add" id="addbutton">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="button" value="Read" id="readbutton"><br>
+		</div>
+		
+		<div id= "divfetch">
+			<marquee><h2>Fetching Weather Updates...</h2></marquee>
+		</div>
+		
+
+		<h2 id="message"></h2>
+		<section id="results"></section>
+		<section id= "sec1"></section>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Country</th>
+					<th>City</th>
+					<th>Min Temp</th>
+					<th>Max Temp</th>
+					<th>Time</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in list">
+					<td>{{x.sys.country}}</td>					
+					<td>{{x.name}}</td>
+					<td>{{x.main.temp_min}}</td>
+					<td>{{x.main.temp_max}}</td>
+					<td>{{x.main.temp}}</td>
+				</tr>
+			</tbody>	
+		</table>
+
+	</center>
+	</section>
+
+</body>
+</html>

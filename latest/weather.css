@@ -1,0 +1,59 @@
+body{
+	background-image: url("cloud.jpg");
+}
+
+#sec2{
+	border-style: solid;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: auto;
+	background-color: #B0C4DE;
+	opacity: 0.8;
+	box-shadow: -webkit-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				-moz-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+	border-radius: 5%;
+	padding-bottom: 5%;
+}
+
+
+table{
+	border-style: outset;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: auto;
+	padding: 1%;
+	background: -webkit-linear-gradient(left, deepskyblue , whitesmoke);
+	box-shadow: -webkit-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				-moz-box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+				box-shadow: 11px 10px 5px 0px rgba(0,0,0,0.75);
+	
+
+}
+
+#name{
+	width: 30%;
+	margin-bottom: 1%;
+	padding: 0.8%;
+}
+
+#city1{
+	width: 30%;
+	margin-bottom: 1%;
+	padding: 0.8%;
+}
+
+#addbutton{
+	width: 8%;
+	padding: 0.8%;
+}
+
+#readbutton{
+	width: 8%;
+	padding: 0.8%;
+}
+
+#divfetch{
+	width: 50%;
+	color: navy;
+}
